@@ -95,9 +95,35 @@ class SortingRobot:
     def sort(self):
         """
         Sort the robot's list.
+        
         """
         # Fill this out
-        pass
+        #First we need to move all the way one direction
+        #then pick up the card there and compare it to the next card.
+        #if its higher swap if not move to the next one
+        #once we reach the end we need to go down the list checking if its less than
+        #do this untill no swaps happen
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off()
+            if self.can_move_right():
+                for i in range(0, len(self.l)):
+                    self.swap_item()
+                    self.move_right()
+                    if self.compare_item() == 1:
+                        self.swap_item()
+                        self.set_light_on()
+                    else:
+                        self.move_right()
+            if self.can_move_left():
+                for i in range(0, len(self.l)):
+                    self.swap_item()
+                    self.move_left()
+                    if self.compare_item() == -1:
+                        self.swap_item()
+                        self.set_light_on()
+                    else:
+                        self.move_left()
 
 
 if __name__ == "__main__":
